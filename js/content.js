@@ -886,11 +886,11 @@ window.MV_CONTENT = {
       price: 299.9,
       currency: "BRL",
       en: {
-        name: "Theryon — Dawnlord",
+        name: "Vaelthor — Dawnlord",
         text: "Sunforged plate crowned with golden horns. He strides across the runes and the light itself steps aside to let him pass."
       },
       pt: {
-        name: "Theryon — Senhor da Aurora",
+        name: "Vaelthor — Senhor da Aurora",
         text: "Placas forjadas no sol coroadas por chifres dourados. Ele caminha sobre as runas e a própria luz se afasta para deixá-lo passar."
       }
     },
@@ -915,11 +915,12 @@ window.MV_CONTENT = {
     {
       id: "skin-runewitch",
       kind: "skin",
-      tier: "epic",
+      tier: "legendary",
       tone: "arcane",
       sigil: "arcane",
       art: "assets/shop/skin-runewitch.jpg",
-      price: 2500,
+      price: 299.9,
+      currency: "BRL",
       en: {
         name: "Nyfheris — Runic Witch",
         text: "A hat stitched with charge-sigils and cards that shuffle themselves. The circle beneath her answers before the spell is finished."
@@ -930,20 +931,55 @@ window.MV_CONTENT = {
       }
     },
     {
-      id: "skin-drakefire",
+      id: "skin-theryon-drakefire",      /* art is Theryon's — name fixed (was swapped with Vaelthor) */
       kind: "skin",
-      tier: "epic",
+      tier: "legendary",
       tone: "gold",
       sigil: "blade",
       art: "assets/shop/skin-drakefire.jpg",
-      price: 2200,
+      price: 299.9,
+      currency: "BRL",
       en: {
-        name: "Vaelthor — Drakefire",
+        name: "Theryon — Drakefire",
         text: "Golden scaleplate over an emerald cape, wings still too warm to sit still. Raised by the fire, not by anyone else."
       },
       pt: {
-        name: "Vaelthor — Fogo do Dragão",
+        name: "Theryon — Fogo do Dragão",
         text: "Placas de escamas douradas sobre uma capa esmeralda, asas ainda quentes demais para assentar. Criado pelo fogo, não por mais ninguém."
+      }
+    },
+    {
+      id: "skin-rosewitch",
+      kind: "skin",
+      tier: "epic",
+      tone: "blood",
+      sigil: "arcane",
+      art: "assets/shop/skin-rosewitch.jpg",
+      price: 2600,
+      en: {
+        name: "Nyfheris — Rose Witch",
+        text: "A hat crowned with roses and moon-gold, petals that never quite fall. Every rose in her garden casts its own spell."
+      },
+      pt: {
+        name: "Nyfheris — Bruxa das Rosas",
+        text: "Chapéu coroado por rosas e ouro-lunar, pétalas que nunca caem de todo. Cada rosa do jardim dela conjura o próprio feitiço."
+      }
+    },
+    {
+      id: "skin-galactic",
+      kind: "skin",
+      tier: "epic",
+      tone: "ice",
+      sigil: "arcane",
+      art: "assets/shop/skin-galactic.jpg",
+      price: 2400,
+      en: {
+        name: "Nyfheris — Galactic Empress",
+        text: "Crystal regalia cut from a spiral of stars, moons drifting along the hem. She raises a hand and the galaxy settles back into place."
+      },
+      pt: {
+        name: "Nyfheris — Imperatriz Galáctica",
+        text: "Traje de cristais lapidados numa espiral de estrelas, luas derivando na barra. Ela ergue a mão e a galáxia se acomoda de volta ao lugar."
       }
     },
     {
@@ -1068,7 +1104,7 @@ window.MV_CONTENT = {
     {
       id: "frame-phoenix",
       kind: "frame",
-      rewardFrom: "skin-drakefire",
+      rewardFrom: "skin-theryon-drakefire",
       tier: "elite",
       tone: "gold",
       sigil: "star",
@@ -1443,7 +1479,9 @@ window.MV_CONTENT = {
           { name: "HYOKAKUSARI",     art: "assets/necklaces/necklace-29.png" },
           { name: "GINGAKUSUI",      art: "assets/necklaces/necklace-30.png" },
           { name: "KUROKOUMORI",     art: "assets/necklaces/necklace-31.png" },
-          { name: "SUINAGARETAMA",   art: "assets/necklaces/necklace-32.png" }
+          { name: "SUINAGARETAMA",   art: "assets/necklaces/necklace-32.png" },
+          { name: "AOITSUBASA",      art: "assets/necklaces/necklace-33.png" },
+          { name: "KOKUKETSUBOSHI",  art: "assets/necklaces/necklace-34.png" }
         ]
       }
     ],
