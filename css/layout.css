@@ -3184,3 +3184,14 @@
 #moonai-form input { flex: 1; background: rgba(166,185,204,.08); border: 1px solid rgba(166,185,204,.25); color: #f2f4f8; border-radius: 6px; padding: .5rem .6rem; font-size: .85rem; }
 #moonai-form button { background: #c9a35a; color: #0b1220; border: none; border-radius: 6px; padding: .5rem .9rem; font-weight: 700; cursor: pointer; }
 @media (max-width: 480px) { #moonai-panel { width: 94vw; right: 0; } }
+#moonai-head-actions { display: flex; gap: .4rem; }
+#moonai-head-actions button { background: none; border: none; color: #a6b9cc; font-size: 1.1rem; cursor: pointer; line-height: 1; }
+#moonai-settings { padding: .8rem; border-bottom: 1px solid rgba(166,185,204,.18); display: flex; flex-direction: column; gap: .4rem; background: rgba(166,185,204,.04); }
+#moonai-settings[hidden] { display: none; }
+#moonai-settings label { font-size: .72rem; color: #a6b9cc; letter-spacing: .06em; text-transform: uppercase; margin-top: .3rem; }
+#moonai-settings input { background: rgba(166,185,204,.08); border: 1px solid rgba(166,185,204,.25); color: #f2f4f8; border-radius: 6px; padding: .45rem .6rem; font-size: .82rem; }
+.moonai-settings-actions { display: flex; gap: .4rem; margin-top: .4rem; }
+.moonai-settings-actions button { flex: 1; border: none; border-radius: 6px; padding: .45rem; font-weight: 700; cursor: pointer; }
+#moonai-save { background: #c9a35a; color: #0b1220; }
+#moonai-cancel { background: rgba(166,185,204,.12); color: #a6b9cc; }
+.moonai-settings-note { font-size: .7rem; color: #7a8fa6; margin: .4rem 0 0; }

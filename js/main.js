@@ -651,6 +651,9 @@
   }
   function storeProfile(p) {
     try { localStorage.setItem(PROFILE_KEY, JSON.stringify(p)); } catch (err) { /* private mode */ }
+    if (fbReady && window.firebase.firestore && window.firebase.auth().currentUser) {
+      try { window.firebase.firestore().collection("profiles").doc(window.firebase.auth().currentUser.uid).set(p, { merge: true }); } catch (e) {}
+    }
   }
   function findClass(id) {
     for (var i = 0; i < CONTENT.classes.length; i++) if (CONTENT.classes[i].id === id) return CONTENT.classes[i];
@@ -1970,7 +1973,16 @@
     try {
       window.firebase.initializeApp(cfg);
       fbReady = true;
-      window.firebase.auth().onAuthStateChanged(function () { renderAuthNav(); });
+      window.firebase.auth().onAuthStateChanged(function (user) {
+        if (user && window.firebase.firestore) {
+          window.firebase.firestore().collection("profiles").doc(user.uid).get().then(function (snap) {
+            if (snap.exists) {
+              try { localStorage.setItem(PROFILE_KEY, JSON.stringify(snap.data())); } catch (e) {}
+            }
+          }).catch(function () {});
+        }
+        renderAuthNav();
+      });
     } catch (e) { fbReady = false; }
   })();
 
