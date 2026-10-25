@@ -1406,6 +1406,45 @@ window.MV_CONTENT = {
           { name: "SHIRAHOBARI",   art: "assets/rings/ring-39.png" },
           { name: "TSUYUKINOKI",   art: "assets/rings/ring-40.png" }
         ]
+      },
+      {
+        key: "necklace", kanji: "頸飾",
+        en: "Necklaces", pt: "Colares",
+        /* each amulet is a distinct drop with its own art */
+        items: [
+          { name: "SEIUNBOSHI",      art: "assets/necklaces/necklace-01.png" },
+          { name: "YORUNOKUSARI",    art: "assets/necklaces/necklace-02.png" },
+          { name: "AKUKETSUTAMA",    art: "assets/necklaces/necklace-03.png" },
+          { name: "HIGANOTAMA",      art: "assets/necklaces/necklace-04.png" },
+          { name: "HYOURYUTAMA",     art: "assets/necklaces/necklace-05.png" },
+          { name: "OROCHIKUSABI",    art: "assets/necklaces/necklace-06.png" },
+          { name: "KINKETSUHANA",    art: "assets/necklaces/necklace-07.png" },
+          { name: "MORINOSHINJU",    art: "assets/necklaces/necklace-08.png" },
+          { name: "SEIHOUOUTAMA",    art: "assets/necklaces/necklace-09.png" },
+          { name: "KAZANKUSARI",     art: "assets/necklaces/necklace-10.png" },
+          { name: "ENSEIBOSHI",      art: "assets/necklaces/necklace-11.png" },
+          { name: "KUROBARAKETSU",   art: "assets/necklaces/necklace-12.png" },
+          { name: "ROUHAKUTAMA",     art: "assets/necklaces/necklace-13.png" },
+          { name: "SHUUENTAMA",      art: "assets/necklaces/necklace-14.png" },
+          { name: "YUKIONKUSARI",    art: "assets/necklaces/necklace-15.png" },
+          { name: "KINTSUBAKUSARI",  art: "assets/necklaces/necklace-16.png" },
+          { name: "MEIGETSUKUSARI",  art: "assets/necklaces/necklace-17.png" },
+          { name: "SHINRIKUSABI",    art: "assets/necklaces/necklace-18.png" },
+          { name: "UZUNOYAMI",       art: "assets/necklaces/necklace-19.png" },
+          { name: "RIMENHAKUSUI",    art: "assets/necklaces/necklace-20.png" },
+          { name: "RYUUGANOKUSARI",  art: "assets/necklaces/necklace-21.png" },
+          { name: "HOSHIYOJIN",      art: "assets/necklaces/necklace-22.png" },
+          { name: "SHIKKOKUTAMA",    art: "assets/necklaces/necklace-23.png" },
+          { name: "HAKUNOHANE",      art: "assets/necklaces/necklace-24.png" },
+          { name: "BENIHANETSURU",   art: "assets/necklaces/necklace-25.png" },
+          { name: "MIDORISEISUI",    art: "assets/necklaces/necklace-26.png" },
+          { name: "GESSHOKUSARI",    art: "assets/necklaces/necklace-27.png" },
+          { name: "YATAKUSARI",      art: "assets/necklaces/necklace-28.png" },
+          { name: "HYOKAKUSARI",     art: "assets/necklaces/necklace-29.png" },
+          { name: "GINGAKUSUI",      art: "assets/necklaces/necklace-30.png" },
+          { name: "KUROKOUMORI",     art: "assets/necklaces/necklace-31.png" },
+          { name: "SUINAGARETAMA",   art: "assets/necklaces/necklace-32.png" }
+        ]
       }
     ],
     supreme: [
