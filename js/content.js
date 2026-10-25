@@ -955,7 +955,8 @@ window.MV_CONTENT = {
       tone: "blood",
       sigil: "arcane",
       art: "assets/shop/skin-rosewitch.jpg",
-      price: 2600,
+      price: 129.9,
+      currency: "BRL",
       en: {
         name: "Nyfheris — Rose Witch",
         text: "A hat crowned with roses and moon-gold, petals that never quite fall. Every rose in her garden casts its own spell."
@@ -972,7 +973,8 @@ window.MV_CONTENT = {
       tone: "ice",
       sigil: "arcane",
       art: "assets/shop/skin-galactic.jpg",
-      price: 2400,
+      price: 129.9,
+      currency: "BRL",
       en: {
         name: "Nyfheris — Galactic Empress",
         text: "Crystal regalia cut from a spiral of stars, moons drifting along the hem. She raises a hand and the galaxy settles back into place."
@@ -989,7 +991,8 @@ window.MV_CONTENT = {
       tone: "gold",
       sigil: "star",
       art: "assets/frames/frame-noble.png",
-      price: 3200,
+      price: 29.9,
+      currency: "BRL",
       en: {
         name: "Noble Frame",
         text: "Wings of obsidian gold around a cut royal diamond. Worn by those whose names are re-read at every arena opening."
@@ -1006,7 +1009,8 @@ window.MV_CONTENT = {
       tone: "moon",
       sigil: "star",
       art: "assets/frames/frame-crane.png",
-      price: 2800,
+      price: 29.9,
+      currency: "BRL",
       en: {
         name: "Celestial Crane Frame",
         text: "A crane gliding between ivory clouds, ringed in old gold. Said to carry one wish per moon — never more."
@@ -1023,7 +1027,8 @@ window.MV_CONTENT = {
       tone: "arcane",
       sigil: "star",
       art: "assets/frames/frame-amethyst.png",
-      price: 2400,
+      price: 29.9,
+      currency: "BRL",
       en: {
         name: "Amethyst Frame",
         text: "Silver wings over violet armor, forged in the first quiet after a storm. Keeps the bearer calm — mostly."
@@ -1040,7 +1045,8 @@ window.MV_CONTENT = {
       tone: "ice",
       sigil: "star",
       art: "assets/frames/frame-azure.png",
-      price: 2000,
+      price: 29.9,
+      currency: "BRL",
       en: {
         name: "Starlit Azure Frame",
         text: "Turquoise skies and a golden crescent as its keel — stars settle inside it and refuse to leave."
@@ -1057,7 +1063,8 @@ window.MV_CONTENT = {
       tone: "moon",
       sigil: "star",
       art: "assets/frames/frame-lilac.png",
-      price: 1600,
+      price: 29.9,
+      currency: "BRL",
       en: {
         name: "Lilac Constellation Frame",
         text: "Soft lilac and twin crescents set with amethyst. For profiles that prefer to shine quietly."
