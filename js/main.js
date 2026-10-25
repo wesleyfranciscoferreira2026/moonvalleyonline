@@ -1215,9 +1215,23 @@
 
   /* ---------------- SHOP ---------------- */
   var shopGrid = $("#shopGrid");
+  var shopView = "skins";
+
+  var SHOP_TABS = [
+    ["skins", "shop.tab.skins", function (item) { return item.kind === "skin"; }],
+    ["frames", "shop.tab.frames", function (item) { return item.kind === "frame"; }],
+    ["specific", "shop.tab.specific", function (item) { return item.kind !== "skin" && item.kind !== "frame"; }]
+  ];
 
   function shopSigil(item) {
     return CLASS_SIGILS[item.sigil] || ICONS[item.sigil] || ICONS.star;
+  }
+
+  /* reward frames: kind "frame" with `rewardFrom` — earned by buying another
+     shop entry (a skin or a bundle) instead of being bought directly. */
+  function shopRewardSource(item) {
+    if (!item.rewardFrom) return null;
+    return CONTENT.shop.filter(function (i) { return i.id === item.rewardFrom; })[0] || null;
   }
 
   /* Price markup: items with currency "BRL" show Reais (R$ 249,90),
@@ -1250,6 +1264,7 @@
   function openShopItem(item) {
     var c = loc(item);
     var tier = item.tier || "collector";
+    var reward = shopRewardSource(item);
     openModal(
       (item.art
         ? '<div class="shop-modal__art shop-modal__art--' + item.tone + ' shop-modal__art--cover"><img src="' + item.art + '" alt=""></div>'
@@ -1258,9 +1273,11 @@
       '<span class="book-card__kind" style="position:static;display:inline-block;margin-bottom:.7rem">' + t("shop.kind." + item.kind) + "</span>" +
       '<h3 class="modal-title" id="modalTitle">' + c.name + "</h3>" +
       '<div class="modal-prose"><p>' + c.text + "</p></div>" +
-      '<div class="shop-buyrow">' +
-        '<button class="btn btn--primary" type="button" data-shop-buy>' + shopPrice(item) + "</button>" +
-      "</div>" +
+      (reward
+        ? '<div class="shop-buyrow"><span class="shop-modal__rewardNote">' + t("shop.rewardFor").replace("{skin}", esc(loc(reward).name)) + "</span></div>"
+        : '<div class="shop-buyrow">' +
+          '<button class="btn btn--primary" type="button" data-shop-buy>' + shopPrice(item) + "</button>" +
+        "</div>") +
       '<button class="btn btn--ghost shop-modal__collect' + (isOwned(item.id) ? " is-owned" : "") + '" type="button" data-shop-collect>' +
         t(isOwned(item.id) ? "shop.removeFromCollection" : "shop.addToCollection") +
       "</button>"
@@ -1281,8 +1298,12 @@
     var c = loc(item);
     var tier = item.tier || "collector";
     var tierBadge = '<span class="shop-card__tier shop-card__tier--' + tier + '">' + tierIcon(tier) + "<span>" + t("shop.tier." + tier) + "</span></span>";
+    var reward = shopRewardSource(item);
+    var rewardBadge = reward
+      ? '<span class="shop-card__owned shop-card__owned--reward">✦ ' + t("shop.rewardBadge") + "</span>"
+      : "";
     var card = document.createElement("article");
-    card.className = "frame shop-card shop-card--" + item.tone + " shop-card--tier-" + tier + " reveal";
+    card.className = "frame shop-card shop-card--" + item.tone + " shop-card--tier-" + tier + (reward ? " shop-card--reward" : "") + " reveal";
     card.setAttribute("tabindex", "0");
     card.setAttribute("role", "button");
     card.setAttribute("aria-label", c.name);
@@ -1290,13 +1311,15 @@
       '<span class="shop-card__ring" aria-hidden="true"></span>' +
       (isOwned(item.id) ? '<span class="shop-card__owned">✓ ' + t("shop.ownedChip") + "</span>" : "") +
       (item.art
-        ? '<div class="shop-card__art shop-card__art--cover" aria-hidden="true">' + tierBadge + '<img class="shop-card__img" src="' + item.art + '" alt="" loading="lazy"></div>'
-        : '<div class="shop-card__art" aria-hidden="true">' + tierBadge + '<span class="shop-card__sigil">' + shopSigil(item) + "</span></div>") +
+        ? '<div class="shop-card__art shop-card__art--cover" aria-hidden="true">' + tierBadge + rewardBadge + '<img class="shop-card__img" src="' + item.art + '" alt="" loading="lazy"></div>'
+        : '<div class="shop-card__art" aria-hidden="true">' + tierBadge + rewardBadge + '<span class="shop-card__sigil">' + shopSigil(item) + "</span></div>") +
       '<div class="shop-card__body">' +
         '<span class="shop-card__kind">' + t("shop.kind." + item.kind) + "</span>" +
         '<h3 class="shop-card__name">' + c.name + "</h3>" +
         '<div class="shop-card__foot">' +
-          '<span class="shop-card__buy">' + shopPriceText(item) + "</span>" +
+          (reward
+            ? '<span class="shop-card__buy shop-card__buy--reward">' + t("shop.rewardShort").replace("{skin}", esc(loc(reward).name)) + "</span>"
+            : '<span class="shop-card__buy">' + shopPriceText(item) + "</span>") +
         "</div>" +
       "</div>";
     function open() { openShopItem(item); }
@@ -1309,28 +1332,54 @@
 
   function renderShop() {
     if (!shopGrid) return;
+    var shopTabsEl = $("#shopTabs");
+    if (shopTabsEl) {
+      shopTabsEl.innerHTML = "";
+      SHOP_TABS.forEach(function (tab) {
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "rank-tab" + (shopView === tab[0] ? " is-active" : "");
+        btn.setAttribute("aria-pressed", shopView === tab[0] ? "true" : "false");
+        btn.textContent = t(tab[1]);
+        btn.addEventListener("click", function () {
+          shopView = tab[0];
+          renderShop();
+        });
+        shopTabsEl.appendChild(btn);
+      });
+    }
+    var activeTab = SHOP_TABS.filter(function (tab) { return tab[0] === shopView; })[0] || SHOP_TABS[0];
+    var viewItems = CONTENT.shop.filter(activeTab[2]);
     shopGrid.innerHTML = "";
-    /* items grouped by tier, in the order below */
-    [
-      { tier: "collector", label: t("shop.tierGroup.collector") },
-      { tier: "legendary", label: t("shop.tierGroup.legendary") },
-      { tier: "epic", label: t("shop.tierGroup.epic") },
-      { tier: "elite", label: t("shop.tierGroup.elite") }
-    ].forEach(function (group) {
-      var items = CONTENT.shop.filter(function (item) { return (item.tier || "collector") === group.tier; });
-      if (!items.length) return;
-      var sec = document.createElement("div");
-      sec.className = "shop-tier";
-      var head = document.createElement("h3");
-      head.className = "shop-tier__label shop-tier__label--" + group.tier;
-      head.innerHTML = '<span class="shop-tier__icon" aria-hidden="true">' + tierIcon(group.tier) + "</span><span>" + esc(group.label) + "</span>";
-      var grid = document.createElement("div");
-      grid.className = "shop-grid";
-      sec.appendChild(head);
-      sec.appendChild(grid);
-      items.forEach(function (item) { grid.appendChild(buildShopCard(item)); });
-      shopGrid.appendChild(sec);
-    });
+    if (shopView === "frames") {
+      /* frames render as a single flat grid — no tier grouping */
+      var framesGrid = document.createElement("div");
+      framesGrid.className = "shop-grid";
+      viewItems.forEach(function (item) { framesGrid.appendChild(buildShopCard(item)); });
+      shopGrid.appendChild(framesGrid);
+    } else {
+      /* items grouped by tier, in the order below */
+      [
+        { tier: "collector", label: t("shop.tierGroup.collector") },
+        { tier: "legendary", label: t("shop.tierGroup.legendary") },
+        { tier: "epic", label: t("shop.tierGroup.epic") },
+        { tier: "elite", label: t("shop.tierGroup.elite") }
+      ].forEach(function (group) {
+        var items = viewItems.filter(function (item) { return (item.tier || "collector") === group.tier; });
+        if (!items.length) return;
+        var sec = document.createElement("div");
+        sec.className = "shop-tier";
+        var head = document.createElement("h3");
+        head.className = "shop-tier__label shop-tier__label--" + group.tier;
+        head.innerHTML = '<span class="shop-tier__icon" aria-hidden="true">' + tierIcon(group.tier) + "</span><span>" + esc(group.label) + "</span>";
+        var grid = document.createElement("div");
+        grid.className = "shop-grid";
+        sec.appendChild(head);
+        sec.appendChild(grid);
+        items.forEach(function (item) { grid.appendChild(buildShopCard(item)); });
+        shopGrid.appendChild(sec);
+      });
+    }
     registerReveals();
   }
 
@@ -1414,10 +1463,17 @@
     });
     var cells = [];
     (eq.categories || []).forEach(function (c) {
-      c.names.forEach(function (name) {
-        cells.push('<li class="weapon-chip' + (supremeMap[name] ? " weapon-chip--supreme" : "") +
-          '" data-eq-item data-cat="' + c.key + '" data-name="' + name + '">' +
-          '<span class="weapon-chip__name">' + esc(name) + "</span>" +
+      /* a category is either a flat `names` list or `items` entries with art */
+      var entries = (c.items || []).map(function (it) { return { name: it.name, art: it.art || "" }; })
+        .concat((c.names || []).map(function (name) { return { name: name, art: "" }; }));
+      entries.forEach(function (it) {
+        var art = it.art
+          ? '<img class="weapon-chip__img" src="' + it.art + '" alt="" loading="lazy">'
+          : "";
+        cells.push('<li class="weapon-chip' + (it.art ? " weapon-chip--art" : "") + (supremeMap[it.name] ? " weapon-chip--supreme" : "") +
+          '" data-eq-item data-cat="' + c.key + '" data-name="' + it.name + '">' +
+          art +
+          '<span class="weapon-chip__name">' + esc(it.name) + "</span>" +
           '<span class="weapon-chip__cat">' + c.kanji + "</span>" +
           "</li>");
       });

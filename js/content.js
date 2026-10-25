@@ -864,8 +864,10 @@ window.MV_CONTENT = {
   ],
 
   /* ==========================================================
-     SHOP — skins, bundles and special items (preview catalog).
-     kind: skin | bundle | item
+     SHOP — skins, frames, bundles and special items (preview catalog).
+     kind: skin | frame | bundle | item
+     shop tabs: skins (kind "skin"), frames (kind "frame"),
+     specific (everything else)
      sigil: blade | gun | arcane | bow | star | shield | banner
      tone: blood | iron | arcane | moon | gold | ice
      price: number in Moon Shards (whole numbers), or set
@@ -875,123 +877,243 @@ window.MV_CONTENT = {
      ========================================================== */
   shop: [
     {
-      id: "skin-ashen-bride",
+      id: "skin-dawnlord",
       kind: "skin",
-      tier: "epic",
+      tier: "legendary",
+      tone: "gold",
+      sigil: "shield",
+      art: "assets/shop/skin-dawnlord.jpg",
+      price: 299.9,
+      currency: "BRL",
+      en: {
+        name: "Theryon — Dawnlord",
+        text: "Sunforged plate crowned with golden horns. He strides across the runes and the light itself steps aside to let him pass."
+      },
+      pt: {
+        name: "Theryon — Senhor da Aurora",
+        text: "Placas forjadas no sol coroadas por chifres dourados. Ele caminha sobre as runas e a própria luz se afasta para deixá-lo passar."
+      }
+    },
+    {
+      id: "skin-voidqueen",
+      kind: "skin",
+      tier: "legendary",
       tone: "blood",
       sigil: "blade",
-      price: 1200,
-      en: {
-        name: "Kaelith — Ashen Bride",
-        text: "A blood-red duelist set veiled in funeral silk. Chains turn to black lace, the blades keep their edge — the dress, somehow, never tears."
-      },
-      pt: {
-        name: "Kaelith — Noiva de Cinzas",
-        text: "Um conjunto de duelista rubro envolto em renda fúnebre. As correntes viram renda preta, as lâminas mantêm o fio — o vestido, de alguma forma, jamais rasga."
-      }
-    },
-    {
-      id: "skin-ironclad",
-      kind: "skin",
-      tier: "elite",
-      tone: "iron",
-      sigil: "gun",
-      price: 950,
-      en: {
-        name: "Theryon — Ironclad Marksman",
-        text: "Full plate over the longcoat, rifle stock in gunmetal and ash. Heavier, louder, and completely uninterested in taking cover."
-      },
-      pt: {
-        name: "Theryon — Atirador Blindado",
-        text: "Armadura completa sobre o sobretudo, coronha em metal de guarnição e cinza. Mais pesado, mais alto, e completamente desinteressado em cobertura."
-      }
-    },
-    {
-      id: "skin-starborn",
-      kind: "skin",
-      tier: "legendary",
-      tone: "arcane",
-      sigil: "arcane",
-      art: "assets/shop/skin-starborn.jpg",
-      price: 249.9,
+      art: "assets/shop/skin-voidqueen.jpg",
+      price: 299.9,
       currency: "BRL",
       en: {
-        name: "Nyfheris — Starborn",
-        text: "Robes stitched with the night sky of the first moon. Runes drift across the fabric as if the staff, not the cloth, were casting the spells."
+        name: "Kaelith — Void Queen",
+        text: "Sable hexplate lit from within by a hundred red diamonds. Every step lands inside a storm that has already chosen its queen."
       },
       pt: {
-        name: "Nyfheris — Filha das Estrelas",
-        text: "Túnicas costuradas com o céu noturno da primeira lua. Runas deslizam pelo pano como se fosse o cajado, e não o tecido, conjurando os feitiços."
+        name: "Kaelith — Rainha do Vazio",
+        text: "Armadura obscura iluminada por dentro por cem diamantes vermelhos. Cada passo aterrissa numa tempestade que já escolheu sua rainha."
       }
     },
     {
-      id: "skin-voidreign",
-      kind: "skin",
-      tier: "legendary",
-      tone: "arcane",
-      sigil: "blade",
-      art: "assets/shop/skin-voidreign.jpg",
-      price: 249.9,
-      currency: "BRL",
-      en: {
-        name: "Kaelith — Voidreign",
-        text: "Void-silk armor cut with crimson runestones. The storm behind her answers to the blade in her hand — and to nothing else."
-      },
-      pt: {
-        name: "Kaelith — Reinado do Vazio",
-        text: "Armadura de seda do vazio cortada por pedras rúnicas carmesim. A tempestade atrás dela responde à lâmina em sua mão — e a nada mais."
-      }
-    },
-    {
-      id: "skin-emberwing",
-      kind: "skin",
-      tier: "legendary",
-      tone: "gold",
-      sigil: "gun",
-      art: "assets/shop/skin-emberwing.jpg",
-      price: 249.9,
-      currency: "BRL",
-      en: {
-        name: "Theryon — Emberwing",
-        text: "Gilded scaleplate and wings of living flame. The arena itself lights his entrance — he has never needed an announcer."
-      },
-      pt: {
-        name: "Theryon — Asa Incandescente",
-        text: "Placas douradas de escamas e asas de chama viva. A própria arena ilumina sua entrada — ele nunca precisou de anunciante."
-      }
-    },
-    {
-      id: "skin-solstice",
-      kind: "skin",
-      tier: "legendary",
-      tone: "gold",
-      sigil: "bow",
-      art: "assets/shop/skin-solstice.jpg",
-      price: 249.9,
-      currency: "BRL",
-      en: {
-        name: "Vaelthor — Solstice Hunter",
-        text: "Solar plate welded over moonlit leather — gold that remembers the first dawn. The circle beneath his feet burns the old runes into the stone; his arrows carry the sunrise."
-      },
-      pt: {
-        name: "Vaelthor — Caçador do Solstício",
-        text: "Placas solares soldadas sobre o couro luaqueado — ouro que lembra a primeira aurora. O círculo sob seus pés queima as runas antigas na pedra; suas flechas carregam o nascer do sol."
-      }
-    },
-    {
-      id: "skin-moonprowler",
+      id: "skin-runewitch",
       kind: "skin",
       tier: "epic",
-      tone: "moon",
-      sigil: "bow",
-      price: 950,
+      tone: "arcane",
+      sigil: "arcane",
+      art: "assets/shop/skin-runewitch.jpg",
+      price: 2500,
       en: {
-        name: "Vaelthor — Moonprowler",
-        text: "Silent grey leathers with a hood that drinks the moonlight. Arrows leave no trail; neither does he."
+        name: "Nyfheris — Runic Witch",
+        text: "A hat stitched with charge-sigils and cards that shuffle themselves. The circle beneath her answers before the spell is finished."
       },
       pt: {
-        name: "Vaelthor — Caçador da Lua",
-        text: "Couro cinza silencioso e capuz que bebe a luz da lua. As flechas não deixam rastro; ele também não."
+        name: "Nyfheris — Bruxa Rúnica",
+        text: "Chapéu costurado com sigilos de carga e cartas que se embaralham sozinhas. O círculo sob seus pés responde antes do feitiço terminar."
+      }
+    },
+    {
+      id: "skin-drakefire",
+      kind: "skin",
+      tier: "epic",
+      tone: "gold",
+      sigil: "blade",
+      art: "assets/shop/skin-drakefire.jpg",
+      price: 2200,
+      en: {
+        name: "Vaelthor — Drakefire",
+        text: "Golden scaleplate over an emerald cape, wings still too warm to sit still. Raised by the fire, not by anyone else."
+      },
+      pt: {
+        name: "Vaelthor — Fogo do Dragão",
+        text: "Placas de escamas douradas sobre uma capa esmeralda, asas ainda quentes demais para assentar. Criado pelo fogo, não por mais ninguém."
+      }
+    },
+    {
+      id: "frame-noble",
+      kind: "frame",
+      tier: "elite",
+      tone: "gold",
+      sigil: "star",
+      art: "assets/frames/frame-noble.png",
+      price: 3200,
+      en: {
+        name: "Noble Frame",
+        text: "Wings of obsidian gold around a cut royal diamond. Worn by those whose names are re-read at every arena opening."
+      },
+      pt: {
+        name: "Moldura Nobre",
+        text: "Asas de ouro obsidiana em volta de um diamante régio lapidado. Usada por quem tem o nome relido a cada abertura de arena."
+      }
+    },
+    {
+      id: "frame-crane",
+      kind: "frame",
+      tier: "elite",
+      tone: "moon",
+      sigil: "star",
+      art: "assets/frames/frame-crane.png",
+      price: 2800,
+      en: {
+        name: "Celestial Crane Frame",
+        text: "A crane gliding between ivory clouds, ringed in old gold. Said to carry one wish per moon — never more."
+      },
+      pt: {
+        name: "Moldura do Grou Celeste",
+        text: "Um grou planando entre nuvens de marfim, cercado por ouro antigo. Dizem que carrega um desejo por lua — nunca mais."
+      }
+    },
+    {
+      id: "frame-amethyst",
+      kind: "frame",
+      tier: "elite",
+      tone: "arcane",
+      sigil: "star",
+      art: "assets/frames/frame-amethyst.png",
+      price: 2400,
+      en: {
+        name: "Amethyst Frame",
+        text: "Silver wings over violet armor, forged in the first quiet after a storm. Keeps the bearer calm — mostly."
+      },
+      pt: {
+        name: "Moldura de Ametista",
+        text: "Asas prateadas sobre armadura violeta, forjadas no primeiro silêncio depois de uma tempestade. Mantém a calma de quem usa — quase sempre."
+      }
+    },
+    {
+      id: "frame-azure",
+      kind: "frame",
+      tier: "elite",
+      tone: "ice",
+      sigil: "star",
+      art: "assets/frames/frame-azure.png",
+      price: 2000,
+      en: {
+        name: "Starlit Azure Frame",
+        text: "Turquoise skies and a golden crescent as its keel — stars settle inside it and refuse to leave."
+      },
+      pt: {
+        name: "Moldura Estelar de Azul",
+        text: "Céu turquesa e uma lua crescente dourada de proa — as estrelas se acomodam dentro dela e se recusam a sair."
+      }
+    },
+    {
+      id: "frame-lilac",
+      kind: "frame",
+      tier: "elite",
+      tone: "moon",
+      sigil: "star",
+      art: "assets/frames/frame-lilac.png",
+      price: 1600,
+      en: {
+        name: "Lilac Constellation Frame",
+        text: "Soft lilac and twin crescents set with amethyst. For profiles that prefer to shine quietly."
+      },
+      pt: {
+        name: "Moldura Constelação Lilás",
+        text: "Lilás suave e duas luas crescentes cravejadas de ametista. Para perfis que preferem brilhar em silêncio."
+      }
+    },
+    {
+      id: "frame-sakura",
+      kind: "frame",
+      rewardFrom: "skin-dawnlord",
+      tier: "elite",
+      tone: "gold",
+      sigil: "star",
+      art: "assets/frames/frame-sakura.png",
+      en: {
+        name: "Sakura Frame",
+        text: "Rewarded with the Lord of the Dawn. Cherry branches and rose-gold feathers for those who walk in first light."
+      },
+      pt: {
+        name: "Moldura cerejeira",
+        text: "Recompensa do Senhor da Aurora. Galhos de cerejeira e penas de rosa-ouro para quem caminha na primeira luz."
+      }
+    },
+    {
+      id: "frame-crimson",
+      kind: "frame",
+      rewardFrom: "skin-voidqueen",
+      tier: "elite",
+      tone: "blood",
+      sigil: "star",
+      art: "assets/frames/frame-crimson.png",
+      en: {
+        name: "Crimson Frame",
+        text: "Rewarded with the Void Queen. Black plumage, silver filigree and rubies that shine for the Queen."
+      },
+      pt: {
+        name: "Moldura Carmesim",
+        text: "Recompensa da Rainha do Vazio. Plumagem negra, filigrana prateada e rubis que brilham para a rainha."
+      }
+    },
+    {
+      id: "frame-phoenix",
+      kind: "frame",
+      rewardFrom: "skin-drakefire",
+      tier: "elite",
+      tone: "gold",
+      sigil: "star",
+      art: "assets/frames/frame-phoenix.png",
+      en: {
+        name: "Phoenix Frame",
+        text: "Rewarded with Drakefire. A blaze of rose-gold wings that never burns down — it simply returns."
+      },
+      pt: {
+        name: "Moldura Fênix",
+        text: "Recompensa do Fogo do Dragão. Uma fogueira de asas rosa-ouro que nunca se apaga — apenas retorna."
+      }
+    },
+    {
+      id: "frame-butterfly",
+      kind: "frame",
+      rewardFrom: "skin-runewitch",
+      tier: "elite",
+      tone: "arcane",
+      sigil: "star",
+      art: "assets/frames/frame-butterfly.png",
+      en: {
+        name: "Amethyst Butterfly Frame",
+        text: "Rewarded with the Runic Witch. Amethyst butterflies drift wherever her cards land."
+      },
+      pt: {
+        name: "Moldura Borboleta de Ametista",
+        text: "Recompensa da Bruxa Rúnica. Borboletas de ametista pousam onde suas cartas caem."
+      }
+    },
+    {
+      id: "frame-crystal",
+      kind: "frame",
+      rewardFrom: "bundle-founders",
+      tier: "elite",
+      tone: "ice",
+      sigil: "star",
+      art: "assets/frames/frame-crystal.png",
+      en: {
+        name: "Starlit Crystal Frame",
+        text: "Rewarded with the Founder's Cache. Starlight ribbons and shattered sky, cut for the first oath-sworn."
+      },
+      pt: {
+        name: "Moldura Cristal Estelar",
+        text: "Recompensa do Cofre do Fundador. Fitas de luz estelar e um céu estilhaçado, lapidados para os primeiros jurados."
       }
     },
     {
@@ -1238,6 +1360,52 @@ window.MV_CONTENT = {
       {
         key: "kunai", kanji: "苦無", en: "Kunais", pt: "Kunais",
         names: ["KUROHARI", "ONITOBI", "RAISENKO", "YAMIHARI", "KAZEKIBA", "TSUKITOBI", "KAGEBARI", "RYUTSUBA", "KOKUENBI", "SHINOBIKIBA", "AKATSUKIHARI", "ONIKASAI", "RAIGENKO", "YORUTOBI", "KURONAMIHA", "HOSHIBARI", "KAMIKAZARI", "MUGENHARI", "SHURAKIBA", "TENKASEN", "KOKURYUTOBI", "JIGOKUHARI", "KAGEHOTARU", "RAIMEIKIBA", "AMENOHARI", "ONIMIKAZE", "SHINKAGEBI", "KURONOTSUBASA", "MUGENRAI", "YOMIKURAI"]
+      },
+      {
+        key: "ring", kanji: "環", en: "Rings", pt: "Anéis",
+        /* each ring is a distinct drop with its own art */
+        items: [
+          { name: "SEIRYUNOBU",    art: "assets/rings/ring-01.png" },
+          { name: "OUKANHOJU",     art: "assets/rings/ring-02.png" },
+          { name: "MURASAKITANE",  art: "assets/rings/ring-03.png" },
+          { name: "AKUMAKOKUE",    art: "assets/rings/ring-04.png" },
+          { name: "TSURUGINOWA",   art: "assets/rings/ring-05.png" },
+          { name: "KODAMANZU",     art: "assets/rings/ring-06.png" },
+          { name: "HOSHIYAMITSU",  art: "assets/rings/ring-07.png" },
+          { name: "AOKAIGANE",     art: "assets/rings/ring-08.png" },
+          { name: "ENMASHINTAI",   art: "assets/rings/ring-09.png" },
+          { name: "NIKKOURIN",     art: "assets/rings/ring-10.png" },
+          { name: "HYOUTSEKKI",    art: "assets/rings/ring-11.png" },
+          { name: "RYUKOTSUYU",    art: "assets/rings/ring-12.png" },
+          { name: "KINSHINJU",     art: "assets/rings/ring-13.png" },
+          { name: "SUISHOKAIWA",   art: "assets/rings/ring-14.png" },
+          { name: "KOKURYUGANE",   art: "assets/rings/ring-15.png" },
+          { name: "SEIKAORU",      art: "assets/rings/ring-16.png" },
+          { name: "KOUZETSUKI",    art: "assets/rings/ring-17.png" },
+          { name: "OKAMINOKOE",    art: "assets/rings/ring-18.png" },
+          { name: "RENGESHINJU",   art: "assets/rings/ring-19.png" },
+          { name: "KODAMAKURIN",   art: "assets/rings/ring-20.png" },
+          { name: "SEKISHOKUI",    art: "assets/rings/ring-21.png" },
+          { name: "TENKUTSUBASA",  art: "assets/rings/ring-22.png" },
+          { name: "GOSURINSUI",    art: "assets/rings/ring-23.png" },
+          { name: "OUKAHOSHI",     art: "assets/rings/ring-24.png" },
+          { name: "JUKAINOWA",     art: "assets/rings/ring-25.png" },
+          { name: "HAKUSEKKI",     art: "assets/rings/ring-26.png" },
+          { name: "YAMIKANOME",    art: "assets/rings/ring-27.png" },
+          { name: "RINJIKANE",     art: "assets/rings/ring-28.png" },
+          { name: "TSUKIMEKAKU",   art: "assets/rings/ring-29.png" },
+          { name: "HIRUNOTSUBASA", art: "assets/rings/ring-30.png" },
+          { name: "SEKITOGETSU",   art: "assets/rings/ring-31.png" },
+          { name: "OUKAKINRI",     art: "assets/rings/ring-32.png" },
+          { name: "HAGOROSUI",     art: "assets/rings/ring-33.png" },
+          { name: "SEIKAMEHOSHI",  art: "assets/rings/ring-34.png" },
+          { name: "JUUJIKUSU",     art: "assets/rings/ring-35.png" },
+          { name: "TSUMEKURATSU",  art: "assets/rings/ring-36.png" },
+          { name: "WAKUSEIKIN",    art: "assets/rings/ring-37.png" },
+          { name: "KAZANORU",      art: "assets/rings/ring-38.png" },
+          { name: "SHIRAHOBARI",   art: "assets/rings/ring-39.png" },
+          { name: "TSUYUKINOKI",   art: "assets/rings/ring-40.png" }
+        ]
       }
     ],
     supreme: [
@@ -1480,27 +1648,27 @@ window.MV_CONTENT = {
       placementMatches: 5,
       tiers: [
         {
-          key: "proscrito", rank: 1, min: 0, max: 100,
+          key: "proscrito", rank: 1, min: 0, max: 100, art: "assets/ranks/proscrito.png",
           en: { reward: "Outlaw banner and the exile's sigil." },
           pt: { reward: "Estandarte de Proscrito e o sigilo do exilado." }
         },
         {
-          key: "ascendente", rank: 2, min: 100, max: 200,
+          key: "ascendente", rank: 2, min: 100, max: 200, art: "assets/ranks/ascendente.png",
           en: { reward: "Ascendant banner and a profile frame." },
           pt: { reward: "Estandarte de Ascendente e uma moldura de perfil." }
         },
         {
-          key: "conquistador", rank: 3, min: 200, max: 300,
+          key: "conquistador", rank: 3, min: 200, max: 300, art: "assets/ranks/conquistador.png",
           en: { reward: "Conqueror banner and an arena emote." },
           pt: { reward: "Estandarte de Conquistador e um gesto de arena." }
         },
         {
-          key: "soberano", rank: 4, min: 300, max: 400,
+          key: "soberano", rank: 4, min: 300, max: 400, art: "assets/ranks/soberano.png",
           en: { reward: "Sovereign banner and a weapon glow." },
           pt: { reward: "Estandarte de Soberano e um brilho de arma." }
         },
         {
-          key: "invicto", rank: 5, min: 400, max: 500,
+          key: "invicto", rank: 5, min: 400, max: 500, art: "assets/ranks/invicto.png",
           en: { reward: "Undefeated banner and an exclusive skin shard." },
           pt: { reward: "Estandarte de Invicto e um fragmento de skin exclusivo." }
         },

@@ -1561,62 +1561,6 @@
   border-top-color: rgba(255, 196, 106, .65);
   background: linear-gradient(180deg, rgba(231, 199, 142, .1), transparent 50%);
 }
-/* legendary skins wear the gilded frame; the artwork keeps its 424 / 588
-   proportion, with the content inset to the frame's opening */
-.shop-card--tier-legendary {
-  aspect-ratio: 424 / 588;
-  padding: 14.62% 10.61% 11.08% 10.14%;
-  border-color: transparent;
-  border-radius: 0;
-  overflow: hidden;
-  background:
-    url("../assets/frames/legendary.png?v=2") center / 100% 100% no-repeat,
-    linear-gradient(165deg, rgba(18, 49, 61, .96), rgba(7, 13, 22, .98));
-  box-shadow: 0 14px 32px rgba(4, 8, 16, .45);
-  animation: none;
-}
-.shop-card--tier-legendary:hover,
-.shop-card--tier-legendary:focus-within {
-  border-color: transparent;
-  filter: drop-shadow(0 16px 30px rgba(4, 8, 16, .55)) drop-shadow(0 0 16px rgba(231, 199, 142, .22));
-}
-.shop-card--tier-legendary::before,
-.shop-card--tier-legendary::after { content: none; }
-.shop-card--tier-legendary .gem,
-.shop-card--tier-legendary .shop-card__ring { display: none; }
-.shop-card--tier-legendary .shop-card__art {
-  flex: 1 1 auto;
-  min-height: 0;
-  aspect-ratio: auto;
-  border-bottom: 0;
-}
-/* the whole skin artwork stays visible inside the frame opening */
-.shop-card--tier-legendary .shop-card__img {
-  object-fit: contain;
-}
-.shop-card--tier-legendary:hover .shop-card__img { transform: none; }
-.shop-card--tier-legendary .shop-card__body {
-  flex: 0 0 auto;
-  gap: .2rem;
-  padding: .55rem .5rem .6rem;
-}
-.shop-card--tier-legendary .shop-card__kind { font-size: .5rem; }
-.shop-card--tier-legendary .shop-card__name { font-size: .85rem; line-height: 1.14; }
-.shop-card--tier-legendary .shop-card__foot { padding-top: .4rem; }
-.shop-card--tier-legendary .shop-card__buy {
-  font-size: .7rem;
-  letter-spacing: .16em;
-  text-indent: .16em;
-  padding: .9em 1.8em;
-}
-.shop-card--tier-legendary .shop-card__tier {
-  top: calc(10.54% + 8px);
-  left: calc(10.14% + 8px);
-}
-.shop-card--tier-legendary .shop-card__owned {
-  top: calc(10.54% + 8px);
-  right: calc(10.61% + 8px);
-}
 .shop-card__kind {
   font-family: var(--font-title);
   font-size: .58rem;
@@ -1656,8 +1600,38 @@
   border-radius: 8px;
   pointer-events: none;
 }
+/* reward chip on frames earned through another shop item */
+.shop-card__owned--reward {
+  top: auto;
+  bottom: 12px;
+  right: 12px;
+  color: var(--solar, #E7C78E);
+  border-color: rgba(231, 199, 142, .7);
+  box-shadow: 0 0 12px rgba(231, 199, 142, .4);
+}
 .shop-modal__collect { display: block; width: 100%; margin-top: .9rem; }
 .shop-modal__collect.is-owned { border-color: rgba(166, 185, 204, .6); color: #C6D6E8; }
+/* reward note inside the item modal (no buy button) */
+.shop-modal__rewardNote {
+  font-family: var(--font-title);
+  font-size: .92rem;
+  letter-spacing: .08em;
+  color: var(--solar, #E7C78E);
+}
+/* price text replaced by the reward hint on reward frame cards */
+.shop-card__buy--reward {
+  font-size: .66rem;
+  letter-spacing: .12em;
+  text-indent: .12em;
+  color: var(--solar, #E7C78E);
+  background: none;
+  box-shadow: none;
+  animation: none;
+  padding: .8em 1em;
+  text-align: center;
+  white-space: normal;
+  line-height: 1.5;
+}
 
 /* ---------------- droplist (loot tables) ---------------- */
 .drop-grid {
@@ -1797,6 +1771,32 @@
 .weapon-chip[hidden] { display: none; }
 .weapon-chip--supreme { border-color: rgba(201, 155, 85, .6); box-shadow: inset 0 0 14px rgba(201, 155, 85, .14); }
 .weapon-chip--supreme .weapon-chip__name { color: #E7C78E; }
+/* equipment chips that carry item art (e.g. rings) */
+.weapon-chip--art {
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: .45rem;
+  padding: .4rem .4rem .55rem;
+  text-align: center;
+  background: none;
+  border-color: rgba(166, 185, 204, .1);
+  box-shadow: none;
+}
+.weapon-chip--art:hover { border-color: rgba(201, 155, 85, .4); background: rgba(11, 18, 32, .3); }
+.weapon-chip__img {
+  width: 100%;
+  height: auto;
+  max-height: 190px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 4px 10px rgba(4, 8, 16, .55));
+  transition: transform .4s var(--ease-out);
+}
+.weapon-chip--art:hover .weapon-chip__img { transform: scale(1.08) rotate(-3deg); }
+.weapon-chip--art .weapon-chip__name { font-size: .78rem; }
+.weapon-chip--art .weapon-chip__cat { position: absolute; top: .3rem; right: .45rem; font-size: .7rem; opacity: .55; }
 @media (max-width: 640px) {
   .equip-search { max-width: none; width: 100%; }
   .equip-tabs { justify-content: flex-start; }
@@ -2082,7 +2082,7 @@
 .ranked-tier--art {
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: minmax(120px, 170px) 1fr;
+  grid-template-columns: minmax(150px, 260px) 1fr;
   align-items: center;
   gap: 1.2rem;
   padding: 1rem 1.25rem;
@@ -2092,9 +2092,15 @@
   max-width: 170px;
   height: auto;
   justify-self: center;
-  mix-blend-mode: screen;
-  filter: drop-shadow(0 0 18px rgba(231, 199, 142, .22));
+  filter: drop-shadow(0 0 18px rgba(166, 185, 204, .25));
 }
+/* the ladder breathes: higher ranks wear a slightly larger crest */
+.ranked-tier--proscrito .ranked-tier__art { max-width: 98px; }
+.ranked-tier--ascendente .ranked-tier__art { max-width: 118px; }
+.ranked-tier--conquistador .ranked-tier__art { max-width: 142px; }
+.ranked-tier--soberano .ranked-tier__art { max-width: 168px; }
+.ranked-tier--invicto .ranked-tier__art { max-width: 196px; }
+.ranked-tier--onipotente .ranked-tier__art { max-width: 230px; }
 .ranked__you {
   margin: 0;
   padding: .85rem 1rem;
@@ -2331,6 +2337,18 @@
   60% { opacity: .55; box-shadow: 0 0 10px rgba(255, 110, 40, .35), inset 0 0 8px rgba(201, 155, 85, .15); }
   82% { opacity: 1; box-shadow: 0 0 26px rgba(255, 160, 70, .7), inset 0 0 16px rgba(201, 155, 85, .3); }
 }
+/* reward frames are not for sale — the foot chip reads like a hint, not a buy button */
+.shop-card__buy--reward {
+  color: var(--solar);
+  background: none;
+  border: 1px dashed rgba(231, 199, 142, .45);
+  box-shadow: none;
+  animation: none;
+  padding: .8em 1.2em;
+}
+.shop-card__buy--reward::after { content: none; }
+.shop-card:hover .shop-card__buy--reward { transform: none; }
+.shop-card__buy--reward { font-size: .66rem; letter-spacing: .12em; text-indent: .12em; line-height: 1.6; white-space: normal; text-align: center; }
 .shop-note {
   margin-top: 2.6rem;
   text-align: center;
