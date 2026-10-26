@@ -1835,7 +1835,7 @@
 .rank-board { padding: clamp(1rem, 2.6vw, 1.6rem); }
 .rank-row {
   display: grid;
-  grid-template-columns: 44px 1fr 150px minmax(90px, auto);
+  grid-template-columns: 44px 1fr 150px 120px minmax(90px, auto);
   align-items: center;
   gap: .8rem;
   padding: .62rem .8rem;
@@ -3195,3 +3195,24 @@
 #moonai-save { background: #c9a35a; color: #0b1220; }
 #moonai-cancel { background: rgba(166,185,204,.12); color: #a6b9cc; }
 .moonai-settings-note { font-size: .7rem; color: #7a8fa6; margin: .4rem 0 0; }
+/* ---------------- RANKING ELO + GLOW ---------------- */
+.rank-row__elo { display: flex; align-items: center; gap: .4rem; }
+.rank-elo { display: inline-flex; align-items: center; gap: .35rem; }
+.rank-elo__crest { width: 22px; height: 22px; object-fit: contain; filter: drop-shadow(0 0 6px rgba(231,199,142,.5)); }
+.rank-elo__crest--sigil { width: 22px; height: 22px; color: var(--solar); }
+.rank-elo__name { font-family: var(--font-title); font-size: .62rem; letter-spacing: .08em; color: var(--solar); text-transform: uppercase; }
+
+/* glowing top-10 names */
+.rank-row__player { position: relative; }
+.rank-row .rank-row__player { text-shadow: 0 0 8px rgba(231, 199, 142, .55), 0 0 16px rgba(201, 163, 90, .35); animation: rankGlow 2.6s ease-in-out infinite; }
+@keyframes rankGlow {
+  0%, 100% { text-shadow: 0 0 6px rgba(231,199,142,.45), 0 0 12px rgba(201,163,90,.25); }
+  50% { text-shadow: 0 0 12px rgba(231,199,142,.85), 0 0 22px rgba(201,163,90,.55), 0 0 30px rgba(231,199,142,.3); }
+}
+.rank-row--head .rank-row__player { text-shadow: none; animation: none; color: var(--solar); }
+.rank-row--you .rank-row__player { text-shadow: 0 0 8px rgba(166,185,204,.5); animation: none; }
+
+@media (max-width: 720px) {
+  .rank-row { grid-template-columns: 30px 1fr 90px; }
+  .rank-row__class, .rank-row__elo { display: none; }
+}

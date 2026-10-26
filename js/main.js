@@ -1644,6 +1644,20 @@
     "</div>";
   }
 
+  function eloTierFor(index, total) {
+    var tiers = (CONTENT.ranked && CONTENT.ranked.tiers) || [];
+    if (!tiers.length) return null;
+    var n = total || 10;
+    var bucket = Math.floor(index / Math.max(1, Math.ceil(n / tiers.length)));
+    var ti = tiers.length - 1 - Math.min(tiers.length - 1, bucket);
+    return tiers[ti];
+  }
+  function eloCrest(tier) {
+    if (!tier) return "";
+    if (tier.art) return '<img class="rank-elo__crest" src="' + esc(tier.art) + '" alt="" loading="lazy">';
+    return '<span class="rank-elo__crest rank-elo__crest--sigil">' + RANK_TIER_SIGIL + "</span>";
+  }
+
   function renderRanking() {
     if (!rankTabs || !rankBoard) return;
     var keys = ["kills", "mobs", "arena"];
@@ -1668,6 +1682,7 @@
         '<span class="rank-row__num">#</span>' +
         '<span class="rank-row__player">' + t("ranking.col.player") + "</span>" +
         '<span class="rank-row__class">' + t("ranking.col.class") + "</span>" +
+        '<span class="rank-row__elo">' + t("ranking.col.elo") + "</span>" +
         '<span class="rank-row__value">' + t("ranking.stat." + rankBoardKey) + "</span>" +
       "</div>";
 
@@ -1679,6 +1694,7 @@
           '<span class="rank-row__num">—</span>' +
           '<span class="rank-row__player">' + esc(p.name) + ' <em class="rank-row__tag">' + t("ranking.you") + "</em></span>" +
           '<span class="rank-row__class"><i class="rank-dot rank-dot--' + findClass(p.classId).tone + '"></i>' + pc.name + "</span>" +
+          '<span class="rank-row__elo"><span class="rank-elo"><span class="rank-elo__name">' + t("ranked.unranked") + "</span></span></span>" +
           '<span class="rank-row__value">—</span>' +
         "</div>";
     }
@@ -1689,10 +1705,13 @@
       var value = isArena
         ? rankNum(row.value) + ' <em class="rank-row__record">' + row.wins + "W / " + row.losses + "L</em>"
         : rankNum(row.value);
+      var tier = eloTierFor(i, rows.length);
+      var tierName = tier ? t("ranked.tier." + tier.key) : "";
       return '<div class="rank-row rank-row--' + (i + 1) + '">' +
         '<span class="rank-row__num">' + (i + 1) + "</span>" +
         '<span class="rank-row__player">' + esc(row.name) + "</span>" +
         '<span class="rank-row__class"><i class="rank-dot rank-dot--' + (item ? item.tone : "moon") + '"></i>' + c.name + "</span>" +
+        '<span class="rank-row__elo"><span class="rank-elo">' + eloCrest(tier) + '<span class="rank-elo__name">' + tierName + "</span></span></span>" +
         '<span class="rank-row__value">' + value + "</span>" +
         "</div>";
     }).join("");
