@@ -3216,3 +3216,24 @@
   .rank-row { grid-template-columns: 30px 1fr 90px; }
   .rank-row__class, .rank-row__elo { display: none; }
 }
+/* ---------------- GUILDS ---------------- */
+.guilds { display: flex; flex-direction: column; gap: 1.2rem; }
+.guilds__actions { display: flex; justify-content: flex-end; }
+.guild-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: .8rem; }
+.guild-card { padding: 1rem 1.1rem; border: 1px solid rgba(166,185,204,.14); background: linear-gradient(150deg, rgba(23,59,89,.24), rgba(11,18,32,.48)); border-left: 3px solid var(--solar); }
+.guild-card--mine { border-left-color: #e7c78e; box-shadow: inset 0 0 24px rgba(231,199,142,.12); }
+.guild-card__head { display: flex; align-items: center; gap: .6rem; margin-bottom: .4rem; }
+.guild-card__tag { font-family: var(--font-title); font-size: .7rem; font-weight: 700; letter-spacing: .12em; color: var(--solar); background: rgba(201,163,90,.12); padding: .2rem .5rem; border: 1px solid rgba(201,163,90,.3); }
+.guild-card__name { margin: 0; font-family: var(--font-title); font-size: .95rem; color: #f2f4f8; }
+.guild-card__desc { margin: .3rem 0 .5rem; font-size: .8rem; color: var(--silver-dim); line-height: 1.45; }
+.guild-card__meta { margin: 0 0 .6rem; font-size: .72rem; color: var(--silver-dim); }
+.guild-card__closed { font-size: .72rem; color: #8a6a2a; font-style: italic; }
+.guild-rank { padding: 1rem; border: 1px solid rgba(166,185,204,.14); background: rgba(11,18,32,.4); }
+.guild-rank__title { margin: 0 0 .6rem; font-family: var(--font-title); font-size: .85rem; color: var(--solar); letter-spacing: .12em; text-transform: uppercase; }
+.guild-rank__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .4rem; }
+.guild-rank__item { display: flex; align-items: center; gap: .6rem; padding: .4rem .5rem; border-top: 1px solid rgba(166,185,204,.08); font-size: .8rem; }
+.guild-rank__pos { font-family: var(--font-title); font-weight: 700; color: var(--silver-dim); min-width: 1.4rem; }
+.guild-rank__tag { font-family: var(--font-title); font-size: .65rem; font-weight: 700; color: var(--solar); background: rgba(201,163,90,.1); padding: .15rem .4rem; border: 1px solid rgba(201,163,90,.25); }
+.guild-rank__name { flex: 1; color: #f2f4f8; }
+.guild-rank__meta { font-size: .7rem; color: var(--silver-dim); }
+.guild-rank__recruiting { font-size: .65rem; color: #7fd4a0; letter-spacing: .06em; text-transform: uppercase; }

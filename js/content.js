@@ -51,9 +51,8 @@ window.MV_CONFIG = {
     { key: "facebook", label: "Facebook", url: null },
     { key: "youtube", label: "YouTube", url: null },
     { key: "tiktok", label: "TikTok", url: null }
-  ]
-};
-
+  ],
+  };
 /* ---------- social icons (inline SVG paths) ---------- */
 window.MV_SOCIAL_ICONS = {
   whatsapp: '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zM12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.13h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.36c0-4.53 3.69-8.22 8.23-8.22 2.2 0 4.26.86 5.81 2.42a8.16 8.16 0 0 1 2.41 5.81c0 4.53-3.69 8.21-8.23 8.21z"/></svg>',
@@ -1867,5 +1866,17 @@ window.MV_CONTENT = {
       en: { title: "Concept — Company at Dusk", sub: "Concept Art" },
       pt: { title: "Conceito — Companhia ao Anoitecer", sub: "Arte Conceitual" }
     }
+  ],
+
+  /* ==========================================================
+     GUILDS — sample guilds of the Vale (preview)
+     ========================================================== */
+  guilds: [
+    { id: "g-aurora", tag: "AUR", en: { name: "Aurora Wardens", desc: "Guardians of the eternal light. We raid Frostvale every weekend." }, pt: { name: "Guardiões da Aurora", desc: "Guardiões da luz eterna. Raidamos o Frostvale todo fim de semana." }, leader: "Moonbitten", members: 42, power: 18420, region: "Frostvale", recruiting: true },
+    { id: "g-ashen", tag: "ASH", en: { name: "Ashen Covenant", desc: "Forged in fire. PvE progression and weekly sieges." }, pt: { name: "Pacto das Cinzas", desc: "Forjados no fogo. Progressão PvE e cercos semanais." }, leader: "GrimHollow", members: 38, power: 17100, region: "Ashenmaw", recruiting: true },
+    { id: "g-moongate", tag: "MGT", en: { name: "Moongate Revenants", desc: "Elite PvP guild. Arena ladder climbers." }, pt: { name: "Revenantes do Moongate", desc: "Guilda PvP de elite. Escaladores da ladder de arena." }, leader: "VesperHex", members: 27, power: 15980, region: "Moongate", recruiting: false },
+    { id: "g-eldergrove", tag: "ELD", en: { name: "Eldergrove Sentinels", desc: "Explorers and lorekeepers. Friendly to newcomers." }, pt: { name: "Sentinelas da Eldergrove", desc: "Exploradores e guardiões de lore. Amigáveis a novatos." }, leader: "Solvane", members: 51, power: 14200, region: "Eldergrove", recruiting: true },
+    { id: "g-starfall", tag: "STR", en: { name: "Starfall Company", desc: "Casual guild focused on events and community." }, pt: { name: "Companhia da Queda Estelar", desc: "Guilda casual focada em eventos e comunidade." }, leader: "Eclipsia", members: 63, power: 12050, region: "Moongate", recruiting: true },
+    { id: "g-shadow", tag: "SHD", en: { name: "Shadow Syndicate", desc: "Stealth, ambushes and high-risk contracts." }, pt: { name: "Sindicato das Sombras", desc: "Furtividade, emboscadas e contratos de alto risco." }, leader: "Rivenmoor", members: 19, power: 11300, region: "Ashenmaw", recruiting: false }
   ]
 };

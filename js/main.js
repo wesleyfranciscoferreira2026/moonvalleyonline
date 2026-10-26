@@ -1723,6 +1723,127 @@
     registerReveals();
   }
 
+  /* ---------------- GUILDS ---------------- */
+  var guildsBoard = $("#guildsBoard");
+  var GUILD_KEY = "mv-guild";
+  var GUILDS_CREATED_KEY = "mv-guilds-created";
+
+  function loadGuild() {
+    try { return JSON.parse(localStorage.getItem(GUILD_KEY) || "null"); } catch (e) { return null; }
+  }
+  function storeGuild(g) { try { localStorage.setItem(GUILD_KEY, JSON.stringify(g)); } catch (e) {} }
+  function leaveGuild() { try { localStorage.removeItem(GUILD_KEY); } catch (e) {} }
+  function loadCreatedGuilds() {
+    try { return JSON.parse(localStorage.getItem(GUILDS_CREATED_KEY) || "[]"); } catch (e) { return []; }
+  }
+  function storeCreatedGuilds(list) { try { localStorage.setItem(GUILDS_CREATED_KEY, JSON.stringify(list)); } catch (e) {} }
+
+  function allGuilds() {
+    var base = (CONTENT.guilds || []).slice();
+    var created = loadCreatedGuilds();
+    created.forEach(function (g) { base.push(g); });
+    return base.sort(function (a, b) { return (b.power || 0) - (a.power || 0); });
+  }
+
+  function renderGuilds() {
+    if (!guildsBoard) return;
+    var myGuild = loadGuild();
+    var list = allGuilds();
+    var rankHtml = '<div class="guild-rank"><h3 class="guild-rank__title">' + t("guilds.rankTitle") + "</h3>" +
+      '<ol class="guild-rank__list">' +
+      list.map(function (g, i) {
+        var l = loc(g);
+        return '<li class="guild-rank__item"><span class="guild-rank__pos">' + (i + 1) + '</span>' +
+          '<span class="guild-rank__tag">' + esc(g.tag) + '</span>' +
+          '<span class="guild-rank__name">' + esc(l.name) + '</span>' +
+          '<span class="guild-rank__meta">' + g.members + ' ' + t("guilds.members") + ' · ' + rankNum(g.power) + ' ' + t("guilds.power") + '</span>' +
+          (g.recruiting ? '<span class="guild-rank__recruiting">' + t("guilds.recruiting") + "</span>" : "") +
+        "</li>";
+      }).join("") +
+      "</ol></div>";
+
+    if (myGuild) {
+      var l = loc(myGuild);
+      guildsBoard.innerHTML = '<div class="guilds">' +
+        '<div class="guild-card guild-card--mine">' +
+          '<div class="guild-card__head"><span class="guild-card__tag">' + esc(myGuild.tag) + '</span><h3 class="guild-card__name">' + esc(l.name) + '</h3></div>' +
+          '<p class="guild-card__desc">' + esc(l.desc) + '</p>' +
+          '<p class="guild-card__meta">' + t("guilds.leader") + ': ' + esc(myGuild.leader) + ' · ' + myGuild.members + ' ' + t("guilds.members") + ' · ' + rankNum(myGuild.power) + ' ' + t("guilds.power") + '</p>' +
+          '<button class="btn btn--ghost btn--sm" type="button" data-guild-leave>' + t("guilds.leave") + '</button>' +
+        '</div>' +
+        rankHtml +
+      "</div>";
+      var leaveBtn = $("[data-guild-leave]", guildsBoard);
+      if (leaveBtn) leaveBtn.addEventListener("click", function () { leaveGuild(); renderGuilds(); toast(t("guilds.left")); });
+    } else {
+      guildsBoard.innerHTML = '<div class="guilds">' +
+        '<div class="guilds__actions">' +
+          '<button class="btn btn--primary" type="button" data-guild-create>' + t("guilds.create") + '</button>' +
+        '</div>' +
+        '<div class="guild-list">' +
+        list.map(function (g) {
+          var l = loc(g);
+          return '<div class="guild-card">' +
+            '<div class="guild-card__head"><span class="guild-card__tag">' + esc(g.tag) + '</span><h3 class="guild-card__name">' + esc(l.name) + '</h3></div>' +
+            '<p class="guild-card__desc">' + esc(l.desc) + '</p>' +
+            '<p class="guild-card__meta">' + t("guilds.leader") + ': ' + esc(g.leader) + ' · ' + g.members + ' ' + t("guilds.members") + ' · ' + rankNum(g.power) + ' ' + t("guilds.power") + '</p>' +
+            (g.recruiting
+              ? '<button class="btn btn--ghost btn--sm" type="button" data-guild-join="' + g.id + '">' + t("guilds.join") + '</button>'
+              : '<span class="guild-card__closed">' + t("guilds.closed") + '</span>') +
+          '</div>';
+        }).join("") +
+        '</div>' +
+        rankHtml +
+      "</div>";
+
+      $all("[data-guild-join]", guildsBoard).forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var id = btn.getAttribute("data-guild-join");
+          var g = allGuilds().find(function (x) { return x.id === id; });
+          if (g) { storeGuild(g); renderGuilds(); toast(t("guilds.joined").replace("{name}", loc(g).name)); }
+        });
+      });
+      var createBtn = $("[data-guild-create]", guildsBoard);
+      if (createBtn) createBtn.addEventListener("click", openGuildCreateModal);
+    }
+    registerReveals();
+  }
+
+  function openGuildCreateModal() {
+    openModal(
+      '<h3 class="modal-title">' + t("guilds.createTitle") + '</h3>' +
+      '<form class="auth-form" novalidate>' +
+        '<label class="profile-form__label" for="guildName">' + t("guilds.name") + '</label>' +
+        '<input class="profile-form__input" id="guildName" type="text" maxlength="24" placeholder="' + t("guilds.namePlaceholder") + '">' +
+        '<label class="profile-form__label" for="guildTag">' + t("guilds.tag") + '</label>' +
+        '<input class="profile-form__input" id="guildTag" type="text" maxlength="4" placeholder="ABC">' +
+        '<label class="profile-form__label" for="guildDesc">' + t("guilds.desc") + '</label>' +
+        '<input class="profile-form__input" id="guildDesc" type="text" maxlength="80" placeholder="' + t("guilds.descPlaceholder") + '">' +
+        '<p class="auth-error" id="guildError" role="alert" hidden></p>' +
+        '<button class="btn btn--primary auth-submit" type="submit">' + t("guilds.create") + '</button>' +
+      '</form>'
+    );
+    var form = $(".auth-form", modalBody);
+    if (!form) return;
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var name = $("#guildName").value.trim();
+      var tag = $("#guildTag").value.trim().toUpperCase();
+      var desc = $("#guildDesc").value.trim();
+      var err = $("#guildError");
+      if (name.length < 3) { err.textContent = t("guilds.errName"); err.hidden = false; return; }
+      if (!/^[A-Z]{2,4}$/.test(tag)) { err.textContent = t("guilds.errTag"); err.hidden = false; return; }
+      var created = loadCreatedGuilds();
+      var g = { id: "g-" + Date.now(), tag: tag, en: { name: name, desc: desc || "A new guild of the Vale." }, pt: { name: name, desc: desc || "Uma nova guilda do Vale." }, leader: (currentAccount() ? currentAccount().name : "You"), members: 1, power: 0, region: "Moon Valley", recruiting: true, created: true };
+      created.push(g);
+      storeCreatedGuilds(created);
+      storeGuild(g);
+      closeModal();
+      renderGuilds();
+      toast(t("guilds.created").replace("{name}", name));
+    });
+  }
+
   /* ---------------- ROADMAP ---------------- */
   var planTabs = $("#planTabs");
   var planGrid = $("#planGrid");
@@ -2497,6 +2618,7 @@
     renderDroplist();
     renderRanking();
     renderRanked();
+    renderGuilds();
     renderRoadmap();
     renderAuthNav();
     if (!modalRoot.hidden && $(".auth-form", modalBody)) openAuthModal(authMode);
