@@ -1645,7 +1645,7 @@
   }
 
   function eloTierFor(index, total) {
-    var tiers = (CONTENT.ranked && CONTENT.ranked.tiers) || [];
+    var tiers = (CONTENT.ranking && CONTENT.ranking.ranked && CONTENT.ranking.ranked.tiers) || [];
     if (!tiers.length) return null;
     var n = total || 10;
     var bucket = Math.floor(index / Math.max(1, Math.ceil(n / tiers.length)));
@@ -1653,7 +1653,7 @@
     return tiers[ti];
   }
   function eloTierFromValue(value) {
-    var tiers = (CONTENT.ranked && CONTENT.ranked.tiers) || [];
+    var tiers = (CONTENT.ranking && CONTENT.ranking.ranked && CONTENT.ranking.ranked.tiers) || [];
     for (var i = tiers.length - 1; i >= 0; i--) {
       var t = tiers[i];
       if (value >= t.min && (t.max === null || value <= t.max)) return t;
