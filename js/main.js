@@ -1697,12 +1697,13 @@
     var p = loadProfile();
     if (p && findClass(p.classId)) {
       var pc = loc(findClass(p.classId));
+      var firstTier = (CONTENT.ranking && CONTENT.ranking.ranked && CONTENT.ranking.ranked.tiers) ? CONTENT.ranking.ranked.tiers[0] : null;
       html +=
         '<div class="rank-row rank-row--you">' +
           '<span class="rank-row__num">—</span>' +
           '<span class="rank-row__player">' + esc(p.name) + ' <em class="rank-row__tag">' + t("ranking.you") + "</em></span>" +
           '<span class="rank-row__class"><i class="rank-dot rank-dot--' + findClass(p.classId).tone + '"></i>' + pc.name + "</span>" +
-          '<span class="rank-row__elo"><span class="rank-elo"><span class="rank-elo__name">' + t("ranked.unranked") + "</span></span></span>" +
+          '<span class="rank-row__elo"><span class="rank-elo">' + eloCrest(firstTier) + '<span class="rank-elo__name">' + t("ranked.unranked") + "</span></span></span>" +
           '<span class="rank-row__value">—</span>' +
         "</div>";
     }
