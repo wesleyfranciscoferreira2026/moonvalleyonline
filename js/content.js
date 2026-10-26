@@ -1708,16 +1708,16 @@ window.MV_CONTENT = {
       { name: "Rivenmoor", classId: "kaelith", value: 28773 }
     ],
     arena: [
-      { name: "NyxRavenna", classId: "kaelith", value: 2410, wins: 128, losses: 41 },
-      { name: "Moonbitten", classId: "nyfheris", value: 2355, wins: 119, losses: 44 },
-      { name: "VesperHex", classId: "vaelthor", value: 2290, wins: 110, losses: 48 },
-      { name: "Kaeldros", classId: "theryon", value: 2244, wins: 104, losses: 49 },
-      { name: "GrimHollow", classId: "kaelith", value: 2187, wins: 99, losses: 52 },
-      { name: "Solvane", classId: "nyfheris", value: 2131, wins: 92, losses: 55 },
-      { name: "Thornwake", classId: "vaelthor", value: 2098, wins: 88, losses: 57 },
-      { name: "Ashcroft", classId: "theryon", value: 2040, wins: 81, losses: 60 },
-      { name: "Rivenmoor", classId: "kaelith", value: 1995, wins: 76, losses: 62 },
-      { name: "Eclipsia", classId: "nyfheris", value: 1933, wins: 70, losses: 66 }
+      { name: "NyxRavenna", classId: "kaelith", value: 482, wins: 128, losses: 41 },
+      { name: "Moonbitten", classId: "nyfheris", value: 471, wins: 119, losses: 44 },
+      { name: "VesperHex", classId: "vaelthor", value: 458, wins: 110, losses: 48 },
+      { name: "Kaeldros", classId: "theryon", value: 449, wins: 104, losses: 49 },
+      { name: "GrimHollow", classId: "kaelith", value: 437, wins: 99, losses: 52 },
+      { name: "Solvane", classId: "nyfheris", value: 426, wins: 92, losses: 55 },
+      { name: "Thornwake", classId: "vaelthor", value: 420, wins: 88, losses: 57 },
+      { name: "Ashcroft", classId: "theryon", value: 408, wins: 81, losses: 60 },
+      { name: "Rivenmoor", classId: "kaelith", value: 399, wins: 76, losses: 62 },
+      { name: "Eclipsia", classId: "nyfheris", value: 387, wins: 70, losses: 66 }
     ],
     /* Ranked ladder (pre-season preview): tiers ordered from the
        lowest to the highest. `rank` is the displayed rank number,

@@ -1652,6 +1652,14 @@
     var ti = tiers.length - 1 - Math.min(tiers.length - 1, bucket);
     return tiers[ti];
   }
+  function eloTierFromValue(value) {
+    var tiers = (CONTENT.ranked && CONTENT.ranked.tiers) || [];
+    for (var i = tiers.length - 1; i >= 0; i--) {
+      var t = tiers[i];
+      if (value >= t.min && (t.max === null || value <= t.max)) return t;
+    }
+    return tiers[0] || null;
+  }
   function eloCrest(tier) {
     if (!tier) return "";
     if (tier.art) return '<img class="rank-elo__crest" src="' + esc(tier.art) + '" alt="" loading="lazy">';
@@ -1705,7 +1713,7 @@
       var value = isArena
         ? rankNum(row.value) + ' <em class="rank-row__record">' + row.wins + "W / " + row.losses + "L</em>"
         : rankNum(row.value);
-      var tier = eloTierFor(i, rows.length);
+      var tier = isArena ? eloTierFromValue(row.value) : eloTierFor(i, rows.length);
       var tierName = tier ? t("ranked.tier." + tier.key) : "";
       return '<div class="rank-row rank-row--' + (i + 1) + '">' +
         '<span class="rank-row__num">' + (i + 1) + "</span>" +
